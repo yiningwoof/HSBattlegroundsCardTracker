@@ -34,7 +34,7 @@ export default function App() {
     const abortController = new AbortController();
     const url = 'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&gameMode=battlegrounds';
     const config = {
-      headers: {Authorization: `Bearer USsW22fLhbROeh17DM0ina2Td9iXCfSaGm`},
+      headers: {Authorization: `Bearer ${token}`},
       signal: abortController.signal
     };
 
