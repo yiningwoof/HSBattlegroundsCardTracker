@@ -9,6 +9,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/native-stack": "^6.9.26",
     "axios": "^1.6.8",
     "deprecated-react-native-prop-types": "^5.0.0",
     "dotenv": "^16.4.5",
@@ -18,7 +21,10 @@
     "react-native": "0.73.5",
     "react-native-config": "^1.5.1",
     "react-native-dotenv": "^3.4.11",
-    "react-native-image-gallery": "^2.1.5"
+    "react-native-image-gallery": "^2.1.5",
+    "react-native-safe-area-context": "4.8.2",
+    "react-native-screens": "~3.29.0",
+    "react-navigation": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
