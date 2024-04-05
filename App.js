@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, Text, View, Image, Switch } from 'react-native';
 import ImageGallery from './src/ImageGallery.jsx'
 import axios from 'axios';
-import {REACT_APP_HS_ACCESS_TOKEN} from "@env";
+import { HS_ACCESS_TOKEN } from "@env";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HerosTab from './src/HerosTab/HerosTab.jsx';
@@ -25,7 +25,7 @@ export default function App() {
     const abortController = new AbortController();
     const url = 'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&gameMode=battlegrounds&pageSize=1000';
     const config = {
-      headers: {Authorization: `Bearer ${process.env.HS_ACCESS_TOKEN}`},
+      headers: {Authorization: `Bearer ${HS_ACCESS_TOKEN}`},
       signal: abortController.signal
     };
 
@@ -49,9 +49,13 @@ export default function App() {
       try {
         setIsLoading(true);
 
+        console.log('fetching');
         const response = await axios.get(url, config);
 
+        console.log('card response', response);
+        
         if (response.status === 200) {
+          console.log('response', response);
           const cards = response.data.cards;
 
           setMinionCards(minions(cards));
@@ -80,8 +84,24 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Heros" children={() => <HerosTab cards={heroCards} />} />
+      <Tab.Navigator screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#00ff00'
+        },
+        tabBarIconStyle: {
+          color: 'red'
+        }
+      }}>
+        <Tab.Screen
+          name="Heros"
+          options={{
+            // tabBarLabelPosition: 'below-icon',
+            tabBarIconStyle: {
+              color: 'red'
+            }
+          }}
+          children={() => <HerosTab cards={heroCards} />} 
+        />
         <Tab.Screen name="Minions" children={() => <MinionsTab cards={minionCards} />} />
         <Tab.Screen name="Quests" children={() => <QuestsTab cards={questCards} />} />
         <Tab.Screen name="Rewards" children={() => <RewardsTab cards={rewardCards} />} />
