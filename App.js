@@ -24,6 +24,7 @@ export default function App() {
   useEffect(() => {
     const abortController = new AbortController();
     const url = 'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&gameMode=battlegrounds&pageSize=1000';
+        
     const config = {
       headers: {Authorization: `Bearer ${HS_ACCESS_TOKEN}`},
       signal: abortController.signal
@@ -86,7 +87,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
         tabBarStyle: {
-          backgroundColor: '#00ff00'
+          backgroundColor: '#b3e0dc'
         },
         tabBarIconStyle: {
           color: 'red'
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   scrollView: {
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
   text: {

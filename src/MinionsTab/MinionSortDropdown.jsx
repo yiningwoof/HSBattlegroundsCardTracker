@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
-    backgroundColor: 'pink',
-    marginHorizontal: 20,
-  },
   text: {
     fontSize: 42,
   },

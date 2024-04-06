@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    backgroundColor: 'pink',
     marginHorizontal: 20,
   },
   text: {
