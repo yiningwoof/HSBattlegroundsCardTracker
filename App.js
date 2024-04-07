@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, Text, View, Image, Switch } from 'react-native';
 import ImageGallery from './src/ImageGallery.jsx'
 import axios from 'axios';
-import { HS_ACCESS_TOKEN } from "@env";
+import { REACT_APP_HS_ACCESS_TOKEN } from "@env";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HerosTab from './src/HerosTab/HerosTab.jsx';
@@ -26,7 +26,7 @@ export default function App() {
     const url = 'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&gameMode=battlegrounds&pageSize=1000';
         
     const config = {
-      headers: {Authorization: `Bearer ${HS_ACCESS_TOKEN}`},
+      headers: {Authorization: `Bearer ${REACT_APP_HS_ACCESS_TOKEN}`},
       signal: abortController.signal
     };
 

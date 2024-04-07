@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
 import Expandable from './Expandable';
-import TypeExpandable from './CardExpandable';
 import TypeCluster from './TypeCluster';
 
 const types = [
-  {
-    value: 26,
-    label: 'All Type',
-  },
   {
     value: 20,
     label: 'Beast',
@@ -53,9 +48,12 @@ const types = [
     value: -1,
     label: 'No Type',
   },
+  {
+    value: 26,
+    label: 'All Type',
+  },
 ];
 export default TierExpandable = ({ title, cards }) => {
-  console.log('cards in tier expandable', cards);
   const ChildCards = () => {
     return types.map((type) => (
       <TypeCluster

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import Expandable from './Expandable';
 import CardExpandable from './CardExpandable';
 
 export default TypeCluster = ({ type, cards }) => {
   return (
     <View>
-      <Text>{type}</Text>
+      <Text style={styles.header}>{type}</Text>
       {cards.length ? (
         cards.map((card) => (
           <CardExpandable title={card.name} card={card} key={card.id} />
@@ -17,3 +17,12 @@ export default TypeCluster = ({ type, cards }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#d2be97',
+    fontSize: 16,
+    padding: 4,
+    textAlign: 'center',
+  },
+});

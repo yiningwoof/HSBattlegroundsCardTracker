@@ -10,9 +10,13 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import ExpandableView from '../Tools/ExpandableView';
 
-export default Expandable = ({ title, children, imageBackgroundSrc }) => {
+export default Expandable = ({
+  title,
+  children,
+  isCardExpandable,
+  imageBackgroundSrc,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  console.log('imageBackgroundSrc', imageBackgroundSrc);
 
   const styles = StyleSheet.create({
     container: {
@@ -21,16 +25,26 @@ export default Expandable = ({ title, children, imageBackgroundSrc }) => {
     text: {
       fontSize: 42,
     },
-    toggle: {
+    toggleNarrow: {
       width: '100%',
       height: 40,
-      // backgroundColor: '#81cdc6',
       justifyContent: 'center',
       alignItems: 'center',
+      // backgroundColor: '#987554',
     },
-    // toggle: toggleStyle,
-    toggleText: {
+    toggleWide: {
+      width: '100%',
+      height: 60,
+      justifyContent: 'center',
+      alignItems: 'center',
+      // backgroundColor: '#987554',
+    },
+    toggleTextWhite: {
       color: '#fff',
+      fontWeight: 'bold',
+    },
+    toggleTextBlack: {
+      color: '#664229',
       fontWeight: 'bold',
     },
   });
@@ -41,30 +55,57 @@ export default Expandable = ({ title, children, imageBackgroundSrc }) => {
         onPress={() => {
           setIsExpanded(!isExpanded);
         }}
-        style={styles.toggle}
+        style={isCardExpandable ? styles.toggleNarrow : styles.toggleWide}
       >
-        <ImageBackground
-          source={{
-            uri: imageBackgroundSrc,
-          }}
-          style={{
-            height: 40,
-            width: '100%',
-            opacity: 0.8,
-            position: 'absolute',
-          }}
+        {isCardExpandable ? (
+          <ImageBackground
+            source={{
+              uri: imageBackgroundSrc,
+            }}
+            style={{
+              height: 40,
+              width: '100%',
+              opacity: 0.8,
+              position: 'absolute',
+            }}
+          >
+            <LinearGradient
+              colors={['black', '#303030', 'transparent']}
+              style={{ flex: 1, justifyContent: 'center' }}
+              start={[0, 1]}
+              end={[1, 0]}
+              locations={[0.1, 0.5, 1]}
+            ></LinearGradient>
+          </ImageBackground>
+        ) : (
+          <ImageBackground
+            source={{
+              uri: 'https://t4.ftcdn.net/jpg/04/75/46/65/360_F_475466521_gxMuzd4517K96Q8aEPlZK2DFBlopvH8w.jpg',
+            }}
+            style={{
+              height: 60,
+              width: '100%',
+              opacity: 0.8,
+              position: 'absolute',
+              overflow: 'hidden',
+              borderWidth: '2px',
+              borderColor: '#664229',
+            }}
+          ></ImageBackground>
+        )}
+        <Text
+          style={
+            isCardExpandable ? styles.toggleTextWhite : styles.toggleTextBlack
+          }
         >
-          <LinearGradient
-            colors={['black', '#303030', 'transparent']}
-            style={{ flex: 1, justifyContent: 'center' }}
-            start={[0, 1]}
-            end={[1, 0]}
-            locations={[0.1, 0.5, 1]}
-          ></LinearGradient>
-        </ImageBackground>
-        <Text style={styles.toggleText}>{title}</Text>
+          {title}
+        </Text>
       </TouchableOpacity>
-      <ExpandableView expanded={isExpanded} children={children} />
+      <ExpandableView
+        expanded={isExpanded}
+        isCardExpandable={isCardExpandable}
+        children={children}
+      />
     </View>
   );
 };
