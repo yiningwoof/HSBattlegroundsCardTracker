@@ -3,8 +3,6 @@ import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
 import ExpandableView from '../Tools/ExpandableView';
 
 export default CardExpandable = ({ title, card }) => {
-  console.log('CardExpandable', card);
-  console.log('CardExpandable', title);
   const Child = () => {
     return (
       <View key={card.id}>
@@ -17,15 +15,12 @@ export default CardExpandable = ({ title, card }) => {
     );
   };
 
-  // const toggleStyle = {
-  //   width: '100%',
-  //   height: 30,
-  //   backgorundImage: card.cropImage,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // };
   return (
-    <Expandable title={title} imageBackgroundSrc={card.cropImage}>
+    <Expandable
+      title={title}
+      isCardExpandable={true}
+      imageBackgroundSrc={card.cropImage}
+    >
       <Child />
     </Expandable>
   );
